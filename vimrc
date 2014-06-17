@@ -272,10 +272,10 @@ if has("gui_running")
     set guioptions+=e
     set t_Co=256
     set guitablabel=%M\ %t
-    colorscheme shobogenzo
+    "colorscheme shobogenzo
 else
     set t_Co=256
-    colorscheme shobogenzo_terminal
+    "colorscheme shobogenzo_terminal
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
