@@ -45,7 +45,7 @@ NeoBundle 'vim-scripts/ShowTrailingWhitespace'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Lokaltog/vim-easymotion'
 
-"NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'flazz/vim-colorschemes'
 
 call neobundle#end()
 
@@ -272,10 +272,11 @@ if has("gui_running")
     set guioptions+=e
     set t_Co=256
     set guitablabel=%M\ %t
-    "colorscheme shobogenzo
+    colorscheme shobogenzo
 else
     set t_Co=256
     "colorscheme shobogenzo_terminal
+    colorscheme shobogenzo
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
