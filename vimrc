@@ -1,6 +1,12 @@
 
-" To install run: git clone git@github.com:Shougo/neobundle.vim.git
-" in .vim first
+" To install copy this to your ~/.vimrc and run:
+"
+" mkdir ~/.vim
+" cd ~/.vim
+" git clone git@github.com:Shougo/neobundle.vim.git
+"
+" and then start vim.  Hit yes to the bundle prompt and it will
+" download and install all the plugins required.
 
 if has('vim_starting')
   set nocompatible               " Be iMproved
