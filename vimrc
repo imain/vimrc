@@ -45,6 +45,7 @@ NeoBundle 'vim-scripts/ShowTrailingWhitespace'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Lokaltog/vim-easymotion'
 
+NeoBundle 'vim-scripts/CSApprox.git'
 NeoBundle 'flazz/vim-colorschemes'
 
 call neobundle#end()
