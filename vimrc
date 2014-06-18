@@ -425,6 +425,11 @@ function! s:unite_settings()
 
 endfunction
 
+" Make 'enter' open expand tree or edit a file in vimfiler.
+nmap <silent><buffer><expr> <Cr> vimfiler#smart_cursor_map(
+  \ "\<Plug>(vimfiler_expand_tree)",
+  \ "\<Plug>(vimfiler_edit_file)")
+
 nmap <C-Up> :res +1<cr>
 nmap <C-Down> :res -1<cr>
 
