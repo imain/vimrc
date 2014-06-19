@@ -74,8 +74,9 @@ let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
 let g:vimshell_vimshrc_path = '/home/imain/dot/vimshrc'
 let g:vimfiler_as_default_explorer = 1
-
-
+" Open all files if you press enter on them.
+let g:vimfiler_execute_file_list = {}
+let g:vimfiler_execute_file_list['_'] = 'vim'
 " Start neocomplcache on startup.
 "let g:acp_enableAtStartup = 1
 let g:neocomplcache_enable_at_startup = 1
@@ -425,11 +426,6 @@ function! s:unite_settings()
 
 endfunction
 
-" Make 'enter' open expand tree or edit a file in vimfiler.
-nmap <silent><buffer><expr> <Cr> vimfiler#smart_cursor_map(
-  \ "\<Plug>(vimfiler_expand_tree)",
-  \ "\<Plug>(vimfiler_edit_file)")
-
 nmap <C-Up> :res +1<cr>
 nmap <C-Down> :res -1<cr>
 
@@ -456,12 +452,11 @@ nmap <leader>gj :GitGutterNextHunk<cr>
 nmap <leader>gk :GitGutterPrevHunk<cr>
 
 nnoremap <leader>f :VimFiler<cr>
-"autocmd FileType vimfiler nmap <buffer> <cr> <Plug>(vimfiler_edit_file)
 
 "nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:!<cr>
 nnoremap <leader>r :<C-u>Unite -buffer-name=mru file_mru<cr>
 nnoremap <leader>y :<C-u>Unite -buffer-name=yank history/yank<cr>
-nnoremap <leader>o :<C-u>Unite -buffer-name=files file_rec/git directory:. directory_mru directory:/home/imain/notes <cr>
+nnoremap <leader>o :<C-u>Unite -buffer-name=files file_rec/git directory:. directory_mru<cr>
 nnoremap <silent> <leader>b :<C-u>Unite -hide-source-names -update-time=1 buffer<cr>
 
 "nnoremap <silent> <leader>b :<C-u>BufferGatorToggle<cr>
