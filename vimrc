@@ -277,8 +277,7 @@ if has("gui_running")
     colorscheme shobogenzo
 else
     set t_Co=256
-    "colorscheme shobogenzo_terminal
-    colorscheme shobogenzo
+    colorscheme iangenzo
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
