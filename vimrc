@@ -44,6 +44,7 @@ NeoBundle 'jnwhiteh/vim-golang'
 NeoBundle 'vim-scripts/ShowTrailingWhitespace'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'bronson/vim-trailing-whitespace'
 
 NeoBundle 'vim-scripts/CSApprox.git'
 NeoBundle 'flazz/vim-colorschemes'
@@ -290,7 +291,7 @@ set ffs=unix,dos,mac
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
+" Turn backup off, since most stuff is in SVN, git etc anyway...
 set nobackup
 set nowb
 set noswapfile
@@ -318,6 +319,9 @@ set tabstop=8
 " Linebreak on 500 characters
 set lbr
 set tw=500
+
+" Mostly for documents..
+set textwidth=79
 
 "set ai "Auto indent
 "set si "Smart indent
@@ -450,6 +454,7 @@ nmap <leader>- :split<cr>
 nmap <leader>gj :GitGutterNextHunk<cr>
 nmap <leader>gk :GitGutterPrevHunk<cr>
 
+nmap <leader>x :FixWhitespace<cr>
 nnoremap <leader>f :VimFiler<cr>
 
 "nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:!<cr>
