@@ -186,9 +186,6 @@ set so=12
 " Show line breaks instead of going off the end of the terminal.
 set linebreak
 
-" Max width to show.
-set textwidth=79
-
 " Turn on the WiLd menu
 set wildmenu
 
@@ -301,18 +298,13 @@ set tabstop=8
 " Use spaces instead of tabs by default.
 set expandtab
 set smarttab
+set lbr
 
 autocmd FileType go setlocal shiftwidth=8
 autocmd FileType *.c,*.h setlocal shiftwidth=4
 autocmd FileType make setlocal noexpandtab shiftwidth=8
 autocmd FileType python setlocal shiftwidth=4
 autocmd FileType ruby setlocal shiftwidth=4
-
-" Be smart when using tabs ;)
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
 
 " This should now only apply to C files..
 set cinoptions=(0,W4
