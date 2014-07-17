@@ -303,7 +303,8 @@ set lbr
 autocmd FileType go setlocal shiftwidth=8
 autocmd FileType *.c,*.h setlocal shiftwidth=4
 autocmd FileType make setlocal noexpandtab shiftwidth=8
-autocmd FileType python setlocal shiftwidth=4
+" pep8 for our projects want 79 chars max.
+autocmd FileType python setlocal shiftwidth=4 textwidth=79
 autocmd FileType ruby setlocal shiftwidth=4
 
 " This should now only apply to C files..
