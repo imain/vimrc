@@ -58,16 +58,6 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
-" Golang stuff.. we'll see..
-" Some Linux distributions set filetype in /etc/vimrc.
-" Clear filetype flags before changing runtimepath to force Vim to reload them.
-if exists("g:did_load_filetypes")
-  filetype off
-  filetype plugin indent off
-endif
-filetype plugin indent on
-syntax on
-
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 " Custom prompt for vimshell
@@ -164,10 +154,6 @@ set tags=./tags,tags;$HOME
 
 autocmd BufWritePost *.[ch] :call vimproc#system_bg("/bin/ctags -R")
 
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
 " Set to auto read when a file is changed from the outside
 set autoread
 
@@ -200,7 +186,7 @@ set so=12
 set linebreak
 
 " Max width to show.
-set textwidth=210
+set textwidth=79
 
 " Turn on the WiLd menu
 set wildmenu
@@ -305,16 +291,23 @@ set undoreload=10000
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
+" Set up some indents for different file types.
 
-" Be smart when using tabs ;)
+" Defaults..
+set shiftwidth=4
+" I like standard 8 space tabs when I use them
+set tabstop=8
+" Use spaces instead of tabs by default.
+set expandtab
 set smarttab
 
-" 1 tab == 4 spaces
-" Doing lots of golang lately..
-set shiftwidth=8
-set tabstop=8
+autocmd FileType go setlocal shiftwidth=8
+autocmd FileType *.c,*.h setlocal shiftwidth=4
+autocmd FileType make setlocal noexpandtab shiftwidth=8
+autocmd FileType python setlocal shiftwidth=4
+autocmd FileType ruby setlocal shiftwidth=4
+
+" Be smart when using tabs ;)
 
 " Linebreak on 500 characters
 set lbr
@@ -323,14 +316,7 @@ set tw=500
 " Mostly for documents..
 set textwidth=79
 
-"set ai "Auto indent
-"set si "Smart indent
-"set wrap "Wrap lines
-
-" C style indent
-set cindent
-
-" Set some options.. (0 makes lines on new line line up with open paren.
+" This should now only apply to C files..
 set cinoptions=(0,W4
 
 " always show tabs
