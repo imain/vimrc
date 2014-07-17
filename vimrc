@@ -314,9 +314,6 @@ autocmd FileType ruby setlocal shiftwidth=4
 set lbr
 set tw=500
 
-" Mostly for documents..
-set textwidth=79
-
 " This should now only apply to C files..
 set cinoptions=(0,W4
 
