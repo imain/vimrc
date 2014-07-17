@@ -48,6 +48,7 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 
 NeoBundle 'vim-scripts/CSApprox.git'
 NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'tomtom/tcomment_vim'
 
 call neobundle#end()
 
@@ -362,8 +363,8 @@ set guitablabel=%N\ %f
 """"""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :call VisualSelection('f')<CR>
-vnoremap <silent> # :call VisualSelection('b')<CR>
+" vnoremap <silent> * :call VisualSelection('f')<CR>
+" vnoremap <silent> # :call VisualSelection('b')<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -373,9 +374,17 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 map j gj
 map k gk
 
-" Hate the default locate of pgup/down.  Steel some less used keys..
+" An alternative to pgup/down
 map S 15j
 map W 15k
+
+map <PageUp> <C-U>
+map <PageDown> <C-D>
+imap <PageUp> <C-O><C-U>
+imap <PageDown> <C-O><C-D>
+
+" Try to keep the cursor at the same column when using page up/down
+set nostartofline
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 "map <space> /
@@ -430,9 +439,15 @@ nmap wh <C-W>h
 nmap wl <C-W>l
 nmap wc <C-W>c
 nmap wo <C-W>o
+nmap w<Up> :res +5<cr>
+nmap w<Down> :res +5<cr>
+nmap wK :res +5
+nmap wJ :res +5
 
 map <leader>j <Plug>(easymotion-f)
 map <leader>k <Plug>(easymotion-F)
+map <leader>h <Plug>(easymotion-b)
+map <leader>l <Plug>(easymotion-w)
 
 nmap <leader>\ :vsplit<cr>
 nmap <leader>- :split<cr>
@@ -442,6 +457,9 @@ nmap <leader>gk :GitGutterPrevHunk<cr>
 
 nmap <leader>x :FixWhitespace<cr>
 nnoremap <leader>f :VimFiler<cr>
+
+map <leader>C :TComment<cr>
+map <leader>B :TCommentBlock<cr>
 
 "nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:!<cr>
 nnoremap <leader>r :<C-u>Unite -buffer-name=mru file_mru<cr>
