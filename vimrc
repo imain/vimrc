@@ -308,6 +308,8 @@ autocmd FileType make setlocal noexpandtab shiftwidth=8
 autocmd FileType python setlocal shiftwidth=4 textwidth=79
 autocmd FileType ruby setlocal shiftwidth=4
 autocmd FileType text setlocal textwidth=79
+" Turn off whitespace for unite buffers or it looks messy
+autocmd FileType unite call ShowTrailingWhitespace#Set(0,0)
 
 " This should now only apply to C files..
 set cinoptions=(0,W4
