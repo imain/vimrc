@@ -300,12 +300,14 @@ set expandtab
 set smarttab
 set lbr
 
+" Settings for specific file types.
 autocmd FileType go setlocal shiftwidth=8
 autocmd FileType *.c,*.h setlocal shiftwidth=4
 autocmd FileType make setlocal noexpandtab shiftwidth=8
 " pep8 for our projects want 79 chars max.
 autocmd FileType python setlocal shiftwidth=4 textwidth=79
 autocmd FileType ruby setlocal shiftwidth=4
+autocmd FileType text setlocal textwidth=79
 
 " This should now only apply to C files..
 set cinoptions=(0,W4
@@ -568,6 +570,11 @@ set laststatus=2
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l,%c\ %#warningmsg#\ %{fugitive#statusline()}\ %{SyntasticStatuslineFlag()}
 
+" Change status colors based on insert or normal mode.
+if version >= 700
+  au InsertLeave * hi StatusLine term=bold,reverse cterm=NONE ctermbg=138 ctermfg=229 gui=NONE guibg=#875f5f guifg=#ffffaf
+  au InsertEnter * hi StatusLine term=reverse cterm=NONE ctermbg=4 ctermfg=158 gui=NONE guibg=#ffef4f guifg=#f7ffff
+ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
