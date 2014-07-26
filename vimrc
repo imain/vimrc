@@ -3,7 +3,7 @@
 "
 " mkdir ~/.vim
 " cd ~/.vim
-" git clone git@github.com:Shougo/neobundle.vim.git
+" git clone https://github.com/Shougo/neobundle.vim.git
 "
 " and then start vim.  Hit yes to the bundle prompt and it will
 " download and install all the plugins required.
