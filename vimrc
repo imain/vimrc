@@ -44,8 +44,6 @@ NeoBundle 'jnwhiteh/vim-golang'
 NeoBundle 'vim-scripts/ShowTrailingWhitespace'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'bronson/vim-trailing-whitespace'
-
 NeoBundle 'vim-scripts/CSApprox.git'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'tomtom/tcomment_vim'
@@ -80,10 +78,6 @@ let g:neocomplcache_enable_debug=1
 " Apparently it then only runs on buffer load/save.
 let g:gitgutter_eager = 0
 
-" One of these must do what I want..
-"let g:neocomplcache_auto_completion_start_length = 5
-"let g:neocomplcache_min_syntax_length = 5
-
 let g:tagbar_type_go = {
 	\ 'ctagstype' : 'go',
 	\ 'kinds'     : [
@@ -112,7 +106,7 @@ let g:tagbar_type_go = {
 	\ 'ctagsargs' : '-sort -silent'
 \ }
 
-" Select the next longest common string
+" Select the next longest common string during autocomplete
 set completeopt+=longest
 
 " Manually complete with ctrl-l
@@ -130,18 +124,11 @@ function! s:check_back_space()"{{{
     return !col || getline('.')[col - 1] =~ '\s'
 endfunction"}}}
 
-
 " Start a new tab when you use 'vim <filename>' in vimshell
 let g:vimshell_split_command='tabnew'
 
 " Set up ctrl-r to be like bash ctrl-r
-autocmd FileType vimshell imap <silent> <buffer> <C-r> <Plug>(vimshell_history_unite)
-
-" Don't use ignorecase for autocomplete.
-" let g:acp_ignorecaseOption=0
-
-" Set background color for whitespace matching to green.
-highlight ShowTrailingWhitespace ctermbg=green guibg=green
+autocmd FileType vimshell map <silent> <buffer> <C-r> <Plug>(vimshell_history_unite)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -510,8 +497,8 @@ nmap <leader>sp [s
 nmap <leader>sa zg
 nmap <leader>s? z=
 
-" close a buffer
-nmap <leader>d :bd!<cr>
+" close a buffer without closing the window or tab.
+nmap <leader>d :Bclose<cr>
 nmap <leader>qa :qa<cr>
 nmap <leader>qq :q<cr>
 
@@ -656,3 +643,11 @@ function! <SID>BufcloseCloseIt()
     endif
 endfunction
 
+function! s:FixWhitespace(line1,line2)
+    let l:save_cursor = getpos(".")
+    silent! execute ':' . a:line1 . ',' . a:line2 . 's/\s\+$//'
+    call setpos('.', l:save_cursor)
+endfunction
+
+" Run :FixWhitespace to remove end of line white space
+command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
