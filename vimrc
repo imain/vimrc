@@ -508,8 +508,9 @@ nmap <leader>wq :wq<cr>
 
 " Toggle paste mode on and off
 nmap <leader>pp :setlocal paste!<cr>
-" Paste form clipboard
-nmap <leader>pc "+p
+" Copy to/from clipboard.  This uses ctrl-c/ctrl-v c/v bindings
+nmap <leader>pv "+p
+vmap <leader>pc "+y
 
 " Execute(interpret) contents of buffer.
 nmap <leader>i :%y"<cr>:@"<cr>
@@ -562,7 +563,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 " Change status colors based on insert or normal mode.
 if version >= 700
   au InsertLeave * hi StatusLine term=bold,reverse cterm=NONE ctermbg=138 ctermfg=229 gui=NONE guibg=#875f5f guifg=#ffffaf
-  au InsertEnter * hi StatusLine term=reverse cterm=NONE ctermbg=4 ctermfg=158 gui=NONE guibg=#ffef4f guifg=#f7ffff
+  au InsertEnter * hi StatusLine term=reverse cterm=NONE ctermbg=4 ctermfg=158 gui=NONE guibg=#0010a0 guifg=#f7ffff
  endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -651,3 +652,9 @@ endfunction
 
 " Run :FixWhitespace to remove end of line white space
 command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
+
+" Finally, source vimrc local at the end,  This will let you override stuff
+" if you like.
+if filereadable(glob("~/.vimrc.local"))
+    source ~/.vimrc.local
+endif
