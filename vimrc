@@ -37,6 +37,8 @@ NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'airblade/vim-gitgutter'
@@ -445,19 +447,16 @@ map <leader>B :TCommentBlock<cr>
 "nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:!<cr>
 nnoremap <leader>r :<C-u>Unite -buffer-name=mru file_mru<cr>
 nnoremap <leader>y :<C-u>Unite -buffer-name=yank history/yank<cr>
-nnoremap <leader>o :<C-u>Unite -buffer-name=files file_rec/git directory:. directory_mru<cr>
-nnoremap <silent> <leader>b :<C-u>Unite -hide-source-names -update-time=1 buffer<cr>
+nnoremap <leader>o :<C-u>Unite -buffer-name=outline outline -start-insert<cr>
+nnoremap <leader>n :<C-u>Unite -buffer-name=tags tag -start-insert<cr>
+nnoremap <leader>b :<C-u>Unite -hide-source-names -update-time=1 buffer<cr>
 
 "nnoremap <silent> <leader>b :<C-u>BufferGatorToggle<cr>
 
 nnoremap <leader>z :<C-u>Unite grep:.: <cr>
 
-" split to tiled windows
-"map <leader>n <Plug>GoldenViewSplit
-
 " Switch to last used buffer.
 nmap <leader>e 
-
 nmap <leader>u :Tagbar<cr>
 " Useful mappings for managing tabs
 nmap <leader>tn :tabnew<cr>
