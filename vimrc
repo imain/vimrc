@@ -59,8 +59,6 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-
 " Custom prompt for vimshell
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 let g:vimshell_prompt =  '$ '
@@ -126,9 +124,6 @@ function! s:check_back_space()"{{{
     return !col || getline('.')[col - 1] =~ '\s'
 endfunction"}}}
 
-" Start a new tab when you use 'vim <filename>' in vimshell
-let g:vimshell_split_command='tabnew'
-
 " Set up ctrl-r to be like bash ctrl-r
 autocmd FileType vimshell map <silent> <buffer> <C-r> <Plug>(vimshell_history_unite)
 
@@ -150,10 +145,6 @@ set autoread
 " Show leader in buffer status.
 set showcmd
 
-" Set timeoutlen for escape sequences pretty short.  I never use a laggy interface (well almost)
-" This is in ms obviously.
-:set timeout timeoutlen=1500 ttimeoutlen=150
-
 " With a map leader it's possible to do extra key combinations
 nnoremap <SPACE> <Nop>
 " This works and let's you see the leader being pressed down below
@@ -168,9 +159,12 @@ let g:mapleader = " "
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Set 12 lines to the cursor - keeps a good amount of text between
+" Don't have key sequences timeout.
+set notimeout
+
+" Set 10 lines to the cursor - keeps a good amount of text between
 " cursor and bottom/top of window.
-set so=12
+set so=10
 
 " Show line breaks instead of going off the end of the terminal.
 set linebreak
@@ -264,10 +258,6 @@ set ffs=unix,dos,mac
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git etc anyway...
-set nobackup
-set nowb
-set noswapfile
 
 " Persistent undo!!
 set undodir=~/dot/.vim/undo
@@ -297,8 +287,12 @@ autocmd FileType make setlocal noexpandtab shiftwidth=8
 autocmd FileType python setlocal shiftwidth=4 textwidth=79
 autocmd FileType ruby setlocal shiftwidth=4
 autocmd FileType text setlocal textwidth=79
+autocmd FileType gitcommit setlocal textwidth=71
 " Turn off whitespace for unite buffers or it looks messy
 autocmd FileType unite call ShowTrailingWhitespace#Set(0,0)
+
+" Turn on auto text wrapping.
+set formatoptions+=t
 
 " This should now only apply to C files..
 set cinoptions=(0,W4
@@ -416,8 +410,8 @@ nmap <C-Down> :res -1<cr>
 " It's easy to never use 'w' these when you have easymotion.
 nmap w\ :vsplit<cr>
 nmap w- :split<cr>
-nmap wj <C-W>j:res 40<cr>
-nmap wk <C-W>k:res 40<cr>
+nmap wj <C-W>j
+nmap wk <C-W>k
 nmap wh <C-W>h
 nmap wl <C-W>l
 nmap wc <C-W>c
@@ -439,7 +433,7 @@ nmap <leader>gj :GitGutterNextHunk<cr>
 nmap <leader>gk :GitGutterPrevHunk<cr>
 
 nmap <leader>x :FixWhitespace<cr>
-nnoremap <leader>f :VimFiler<cr>
+nnoremap <leader>f :VimFilerBufferDir<cr>
 
 map <leader>C :TComment<cr>
 map <leader>B :TCommentBlock<cr>
@@ -515,7 +509,7 @@ vmap <leader>pc "+y
 nmap <leader>i :%y"<cr>:@"<cr>
 
 " Start a new vimshell
-nmap <leader>v :VimShell<cr>
+nmap <leader>v :VimShellBufferDir<cr>
 
 " Map alt-# to move to tab, also <leader> #
 let c = 1
