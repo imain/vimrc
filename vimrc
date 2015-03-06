@@ -6,13 +6,15 @@
 " git clone https://github.com/Shougo/neobundle.vim.git
 "
 " and then start vim.  Hit yes to the bundle prompt and it will
-" download and install all the plugins required.
+" download and install all the plugins required.  There may be
+" a few warnings but you can ignore those.  Once all the plugins
+" are installed quit and restart vim and it should all go smoothly.
 
 if has('vim_starting')
-  set nocompatible               " Be iMproved
+    set nocompatible               " Be iMproved
 
-" Required:
-set runtimepath+=~/.vim/neobundle.vim/
+    " Required:
+    set runtimepath+=~/.vim/neobundle.vim/
 endif
 
 " Required:
@@ -23,13 +25,13 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'Shougo/vimproc.vim', {
-        \ 'build' : {
-        \     'windows' : 'make -f make_mingw32.mak',
-        \     'cygwin' : 'make -f make_cygwin.mak',
-        \     'mac' : 'make -f make_mac.mak',
-        \     'unix' : 'make -f make_unix.mak',
-        \    }
-        \ }
+            \ 'build' : {
+            \     'windows' : 'make -f make_mingw32.mak',
+            \     'cygwin' : 'make -f make_cygwin.mak',
+            \     'mac' : 'make -f make_mac.mak',
+            \     'unix' : 'make -f make_unix.mak',
+            \    }
+            \ }
 NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-session'
@@ -79,32 +81,32 @@ let g:neocomplcache_enable_debug=1
 let g:gitgutter_eager = 0
 
 let g:tagbar_type_go = {
-	\ 'ctagstype' : 'go',
-	\ 'kinds'     : [
-		\ 'p:package',
-		\ 'i:imports:1',
-		\ 'c:constants',
-		\ 'v:variables',
-		\ 't:types',
-		\ 'n:interfaces',
-		\ 'w:fields',
-		\ 'e:embedded',
-		\ 'm:methods',
-		\ 'r:constructor',
-		\ 'f:functions'
-	\ ],
-	\ 'sro' : '.',
-	\ 'kind2scope' : {
-		\ 't' : 'ctype',
-		\ 'n' : 'ntype'
-	\ },
-	\ 'scope2kind' : {
-		\ 'ctype' : 't',
-		\ 'ntype' : 'n'
-	\ },
-	\ 'ctagsbin'  : 'gotags',
-	\ 'ctagsargs' : '-sort -silent'
-\ }
+            \ 'ctagstype' : 'go',
+            \ 'kinds'     : [
+            \ 'p:package',
+            \ 'i:imports:1',
+            \ 'c:constants',
+            \ 'v:variables',
+            \ 't:types',
+            \ 'n:interfaces',
+            \ 'w:fields',
+            \ 'e:embedded',
+            \ 'm:methods',
+            \ 'r:constructor',
+            \ 'f:functions'
+            \ ],
+            \ 'sro' : '.',
+            \ 'kind2scope' : {
+            \ 't' : 'ctype',
+            \ 'n' : 'ntype'
+            \ },
+            \ 'scope2kind' : {
+            \ 'ctype' : 't',
+            \ 'ntype' : 'n'
+            \ },
+            \ 'ctagsbin'  : 'gotags',
+            \ 'ctagsargs' : '-sort -silent'
+            \ }
 
 " Select the next longest common string during autocomplete
 set completeopt+=longest
