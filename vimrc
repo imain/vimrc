@@ -160,7 +160,7 @@ let g:mapleader = " "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Don't have key sequences timeout.
-set notimeout
+"set notimeout
 
 " Set 10 lines to the cursor - keeps a good amount of text between
 " cursor and bottom/top of window.
@@ -335,19 +335,7 @@ set guitablabel=%{GuiTabLabel()}
 
 set guitablabel=%N\ %f
 
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-" vnoremap <silent> * :call VisualSelection('f')<CR>
-" vnoremap <silent> # :call VisualSelection('b')<CR>
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
 
@@ -371,14 +359,14 @@ set nostartofline
 let g:unite_source_history_yank_enable = 1
 let g:unite_winheight = 20
 let g:unite_winwidth = 60
-let g:unite_enable_short_source_names = 1
+"let g:unite_enable_short_source_names = 1
 
 " disable gitgutter keys
 let g:gitgutter_map_keys = 0
 
 " Try a different sort.. dunno
 " call unite#filters#sorter_default#use(['sorter_word'])
-call unite#custom#source('buffer', 'sorters', 'sorter_word')
+"call unite#custom#source('buffer', 'sorters', 'sorter_word')
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -418,11 +406,11 @@ nmap wc <C-W>c
 nmap wo <C-W>o
 nmap w<Up> :res +5<cr>
 nmap w<Down> :res +5<cr>
-nmap wK :res +5
-nmap wJ :res +5
+nmap wK :res +5<cr>
+nmap wJ :res +5<cr>
 
-map <leader>j <Plug>(easymotion-f)
-map <leader>k <Plug>(easymotion-F)
+map <leader>j <Plug>(easymotion-j)
+map <leader>k <Plug>(easymotion-k)
 map <leader>h <Plug>(easymotion-b)
 map <leader>l <Plug>(easymotion-w)
 
@@ -457,7 +445,9 @@ nmap <leader>tn :tabnew<cr>
 nmap <leader>to :tabonly<cr>
 nmap <leader>tc :tabclose<cr>
 nmap <leader>td :tabclose<cr>
-nmap <leader>tm :tabmove
+nmap <leader>tp :tabprevious
+nmap <leader>tl :tabnext
+nmap <leader>th :tabmove
 nmap <leader>tt <C-w>T
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -502,11 +492,17 @@ nmap <leader>wq :wq<cr>
 " Toggle paste mode on and off
 nmap <leader>pp :setlocal paste!<cr>
 " Copy to/from clipboard.  This uses ctrl-c/ctrl-v c/v bindings
+nmap <leader>pP "+P
 nmap <leader>pv "+p
 vmap <leader>pc "+y
+vmap <leader>py "+y
 
 " Execute(interpret) contents of buffer.
 nmap <leader>i :%y"<cr>:@"<cr>
+
+nmap <Enter> zO10jzt
+
+nmap zs :set foldmethod=syntax<cr>:set foldnestmax=1<cr>
 
 " Start a new vimshell
 nmap <leader>v :VimShellBufferDir<cr>
@@ -551,7 +547,9 @@ set viminfo^=%
 set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l,%c\ %#warningmsg#\ %{fugitive#statusline()}\ %{SyntasticStatuslineFlag()}
+if exists('g:loaded_fugitive')
+  set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l,%c\ %#warningmsg#\ %{fugitive#statusline()}\ %{SyntasticStatuslineFlag()}
+endif
 
 " Change status colors based on insert or normal mode.
 if version >= 700
@@ -601,12 +599,6 @@ autocmd BufWrite *.py :call DeleteTrailingWS()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-
 
 " Returns true if paste mode is enabled
 function! HasPaste()
