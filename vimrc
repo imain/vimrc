@@ -6,15 +6,13 @@
 " git clone https://github.com/Shougo/neobundle.vim.git
 "
 " and then start vim.  Hit yes to the bundle prompt and it will
-" download and install all the plugins required.  There may be
-" a few warnings but you can ignore those.  Once all the plugins
-" are installed quit and restart vim and it should all go smoothly.
+" download and install all the plugins required.
 
 if has('vim_starting')
-    set nocompatible               " Be iMproved
+  set nocompatible               " Be iMproved
 
-    " Required:
-    set runtimepath+=~/.vim/neobundle.vim/
+" Required:
+set runtimepath+=~/.vim/neobundle.vim/
 endif
 
 " Required:
@@ -25,13 +23,13 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'Shougo/vimproc.vim', {
-            \ 'build' : {
-            \     'windows' : 'make -f make_mingw32.mak',
-            \     'cygwin' : 'make -f make_cygwin.mak',
-            \     'mac' : 'make -f make_mac.mak',
-            \     'unix' : 'make -f make_unix.mak',
-            \    }
-            \ }
+        \ 'build' : {
+        \     'windows' : 'make -f make_mingw32.mak',
+        \     'cygwin' : 'make -f make_cygwin.mak',
+        \     'mac' : 'make -f make_mac.mak',
+        \     'unix' : 'make -f make_unix.mak',
+        \    }
+        \ }
 NeoBundle 'Shougo/unite-build'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-session'
@@ -51,6 +49,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'vim-scripts/CSApprox.git'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'vim-scripts/AnsiEsc.vim'
 
 call neobundle#end()
 
@@ -81,38 +80,37 @@ let g:neocomplcache_enable_debug=1
 let g:gitgutter_eager = 0
 
 let g:tagbar_type_go = {
-            \ 'ctagstype' : 'go',
-            \ 'kinds'     : [
-            \ 'p:package',
-            \ 'i:imports:1',
-            \ 'c:constants',
-            \ 'v:variables',
-            \ 't:types',
-            \ 'n:interfaces',
-            \ 'w:fields',
-            \ 'e:embedded',
-            \ 'm:methods',
-            \ 'r:constructor',
-            \ 'f:functions'
-            \ ],
-            \ 'sro' : '.',
-            \ 'kind2scope' : {
-            \ 't' : 'ctype',
-            \ 'n' : 'ntype'
-            \ },
-            \ 'scope2kind' : {
-            \ 'ctype' : 't',
-            \ 'ntype' : 'n'
-            \ },
-            \ 'ctagsbin'  : 'gotags',
-            \ 'ctagsargs' : '-sort -silent'
-            \ }
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : 'gotags',
+	\ 'ctagsargs' : '-sort -silent'
+\ }
 
 " Select the next longest common string during autocomplete
 set completeopt+=longest
 
 " Manually complete with ctrl-l
-"inoremap <expr><C-l>     neocomplcache#start_manual_complete()
 " Tab completes..
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
@@ -127,7 +125,10 @@ function! s:check_back_space()"{{{
 endfunction"}}}
 
 " Set up ctrl-r to be like bash ctrl-r
-autocmd FileType vimshell map <silent> <buffer> <C-r> <Plug>(vimshell_history_unite)
+autocmd FileType vimshell imap <buffer> <C-r>   <Plug>(vimshell_history_unite)
+" Up key to look through history.
+autocmd Filetype vimshell inoremap <buffer> <expr> <silent> <Up> unite#sources#vimshell_history#start_complete(!0)
+autocmd FileType vimshell imap <buffer> <C-l> <ESC><Plug>(vimshell_clear)i
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -292,6 +293,7 @@ autocmd FileType text setlocal textwidth=79
 autocmd FileType gitcommit setlocal textwidth=71
 " Turn off whitespace for unite buffers or it looks messy
 autocmd FileType unite call ShowTrailingWhitespace#Set(0,0)
+autocmd FileType vimshell call ShowTrailingWhitespace#Set(0,0)
 
 " Turn on auto text wrapping.
 set formatoptions+=t
@@ -408,9 +410,14 @@ nmap wc <C-W>c
 nmap wo <C-W>o
 nmap w<Up> :res +5<cr>
 nmap w<Down> :res +5<cr>
-nmap wK :res +5<cr>
+nmap WK :res -5<cr>
+nmap WJ :res +5<cr>
+nmap WH 5<C-W><
+nmap WL 5<C-W>>
+nmap wK :res -5<cr>
 nmap wJ :res +5<cr>
-
+nmap wH 5<C-W><
+nmap wL 5<C-W>>
 map <leader>j <Plug>(easymotion-j)
 map <leader>k <Plug>(easymotion-k)
 map <leader>h <Plug>(easymotion-b)
@@ -571,6 +578,10 @@ if version >= 700
 vmap j :m'>+<cr>`<my`>mzgv`yo`z
 vmap k :m'<-2<cr>`>my`<mzgv`yo`z
 
+" Insert blank lines above/below cursor with C-j C-k
+nnoremap <silent><C-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><C-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
 nmap <A-j> mz:m+<cr>`z
 nmap <A-k> mz:m-2<cr>`z
 vmap <A-k> :m'<-2<cr>`>my`<mzgv`yo`z
@@ -645,3 +656,5 @@ command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
 if filereadable(glob("~/.vimrc.local"))
     source ~/.vimrc.local
 endif
+
+
