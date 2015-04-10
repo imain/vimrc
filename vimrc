@@ -8,6 +8,10 @@
 " and then start vim.  Hit yes to the bundle prompt and it will
 " download and install all the plugins required.
 
+" Don't load all this stuff if you're using vim-tiny or vim-small.
+if !1 | finish | endif
+
+
 if has('vim_starting')
   set nocompatible               " Be iMproved
 
@@ -420,8 +424,8 @@ nmap wH 5<C-W><
 nmap wL 5<C-W>>
 map <leader>j <Plug>(easymotion-j)
 map <leader>k <Plug>(easymotion-k)
-map <leader>h <Plug>(easymotion-b)
-map <leader>l <Plug>(easymotion-w)
+map <leader>h <Plug>(easymotion-linebackward)
+map <leader>l <Plug>(easymotion-lineforward)
 
 nmap <leader>\ :vsplit<cr>
 nmap <leader>- :split<cr>
