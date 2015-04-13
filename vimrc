@@ -130,6 +130,7 @@ endfunction"}}}
 
 " Set up ctrl-r to be like bash ctrl-r
 autocmd FileType vimshell imap <buffer> <C-r>   <Plug>(vimshell_history_unite)
+autocmd FileType vimshell imap <buffer> <C-d>   exit<CR>
 " Up key to look through history.
 autocmd Filetype vimshell inoremap <buffer> <expr> <silent> <Up> unite#sources#vimshell_history#start_complete(!0)
 autocmd FileType vimshell imap <buffer> <C-l> <ESC><Plug>(vimshell_clear)i
