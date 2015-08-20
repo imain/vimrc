@@ -285,7 +285,8 @@ set tabstop=8
 " Use spaces instead of tabs by default.
 set expandtab
 set smarttab
-set lbr
+" Sets linebreak, kinda ugly actually.
+"set linebreak
 
 " Settings for specific file types.
 autocmd FileType go setlocal shiftwidth=8
