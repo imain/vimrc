@@ -41,19 +41,17 @@ NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/neoyank.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'tsukkee/unite-tag'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'majutsushi/tagbar'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'fatih/vim-go'
 NeoBundle 'vim-scripts/ShowTrailingWhitespace'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'vim-scripts/CSApprox.git'
 NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'nathanaelkane/vim-indent-guides.git'
 NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'vim-scripts/AnsiEsc.vim'
+NeoBundle 'hdima/python-syntax'
 
 call neobundle#end()
 
@@ -83,33 +81,19 @@ let g:neocomplcache_enable_debug=1
 " Apparently it then only runs on buffer load/save.
 let g:gitgutter_eager = 0
 
-let g:tagbar_type_go = {
-	\ 'ctagstype' : 'go',
-	\ 'kinds'     : [
-		\ 'p:package',
-		\ 'i:imports:1',
-		\ 'c:constants',
-		\ 'v:variables',
-		\ 't:types',
-		\ 'n:interfaces',
-		\ 'w:fields',
-		\ 'e:embedded',
-		\ 'm:methods',
-		\ 'r:constructor',
-		\ 'f:functions'
-	\ ],
-	\ 'sro' : '.',
-	\ 'kind2scope' : {
-		\ 't' : 'ctype',
-		\ 'n' : 'ntype'
-	\ },
-	\ 'scope2kind' : {
-		\ 'ctype' : 't',
-		\ 'ntype' : 'n'
-	\ },
-	\ 'ctagsbin'  : 'gotags',
-	\ 'ctagsargs' : '-sort -silent'
-\ }
+
+" Don't set indent guide colors, we set them below
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 1
+
+hi link GitGutterAdd DiffAdd
+hi link GitGutterChange DiffChange
+hi link GitGutterDelete DiffDelete
+hi link GitGutterChangeDelete DiffText
+
+hi link IndentGuidesOdd Normal
+hi link IndentGuidesEven ColorColumn
+
 
 " Select the next longest common string during autocomplete
 set completeopt+=longest
@@ -217,9 +201,6 @@ set magic
 " Show matching brackets when text indicator is over them
 set showmatch
 
-" How many tenths of a second to blink when matching brackets
-set mat=2
-
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
@@ -231,11 +212,6 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable
-
-set background=dark
-
-" Some gui options
-set winaltkeys=no
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -253,7 +229,7 @@ if has("gui_running")
     colorscheme shobogenzo
 else
     set t_Co=256
-    colorscheme iangenzo
+    colorscheme colorful_modified
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -268,7 +244,7 @@ set ffs=unix,dos,mac
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Persistent undo!!
-set undodir=~/dot/.vim/undo
+set undodir=~/.vim/undo
 set undofile
 set undolevels=1000
 set undoreload=10000
@@ -280,8 +256,7 @@ set undoreload=10000
 
 " Defaults..
 set shiftwidth=4
-" I like standard 8 space tabs when I use them
-set tabstop=8
+set tabstop=4
 " Use spaces instead of tabs by default.
 set expandtab
 set smarttab
@@ -300,6 +275,7 @@ autocmd FileType gitcommit setlocal textwidth=71
 " Turn off whitespace for unite buffers or it looks messy
 autocmd FileType unite call ShowTrailingWhitespace#Set(0,0)
 autocmd FileType vimshell call ShowTrailingWhitespace#Set(0,0)
+autocmd FileType yaml setlocal shiftwidth=2
 
 " Turn on auto text wrapping.
 set formatoptions+=t
@@ -366,17 +342,12 @@ set nostartofline
 "map <c-space> ?
 
 " UNITE
-let g:unite_source_history_yank_enable = 1
 let g:unite_winheight = 20
 let g:unite_winwidth = 60
 "let g:unite_enable_short_source_names = 1
 
 " disable gitgutter keys
 let g:gitgutter_map_keys = 0
-
-" Try a different sort.. dunno
-" call unite#filters#sorter_default#use(['sorter_word'])
-"call unite#custom#source('buffer', 'sorters', 'sorter_word')
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -565,12 +536,6 @@ set laststatus=2
 if exists('g:loaded_fugitive')
   set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l,%c\ %#warningmsg#\ %{fugitive#statusline()}\ %{SyntasticStatuslineFlag()}
 endif
-
-" Change status colors based on insert or normal mode.
-if version >= 700
-  au InsertLeave * hi StatusLine term=bold,reverse cterm=NONE ctermbg=138 ctermfg=229 gui=NONE guibg=#875f5f guifg=#ffffaf
-  au InsertEnter * hi StatusLine term=reverse cterm=NONE ctermbg=4 ctermfg=158 gui=NONE guibg=#0010a0 guifg=#f7ffff
- endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
