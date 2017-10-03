@@ -65,7 +65,7 @@ hi MatchParen ctermfg=white ctermbg=126 cterm=bold
 hi ModeMsg ctermfg=53 ctermbg=215
 hi MoreMsg ctermfg=white ctermbg=89
 hi Number ctermfg=black ctermbg=49
-hi Operator ctermfg=black ctermbg=66
+hi Operator ctermfg=black ctermbg=104
 hi PMenu ctermfg=black ctermbg=192
 hi PMenuSbar ctermfg=black ctermbg=252
 hi PMenuSel ctermfg=124 ctermbg=229 cterm=bold
@@ -93,7 +93,7 @@ hi TabLineSel ctermfg=15 ctermbg=23 cterm=bold
 hi Tag ctermfg=22 ctermbg=15
 hi Title ctermfg=19 ctermbg=74
 hi Todo ctermfg=52 ctermbg=221
-hi Type ctermfg=black ctermbg=107
+hi Type ctermfg=black ctermbg=110
 hi Typedef ctermbg=black ctermbg=78
 hi VertSplit ctermfg=black ctermbg=105 cterm=bold
 hi Visual ctermfg=white ctermbg=89 cterm=bold
