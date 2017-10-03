@@ -229,7 +229,7 @@ if has("gui_running")
     colorscheme shobogenzo
 else
     set t_Co=256
-    colorscheme colorful_modified
+    colorscheme highlighter_term
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
