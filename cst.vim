@@ -9,6 +9,8 @@
 " save your changes, and switch to another color scheme and back to your own
 " to see changes.
 
+" Add to ~/.vim/syntax/ directory.
+
 " Quit when a syntax file was already loaded
 if !exists("main_syntax")
   if version < 600
