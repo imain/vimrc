@@ -92,6 +92,18 @@ syn match CSTUnderlined       /\<Underlined\>/
 syn match CSTIgnore           /\<Ignore\>/
 syn match CSTError            /\<Error\>/
 syn match CSTTodo             /\<Todo\>/
+syn match CSTPMenu            /\<PMenu\>/
+syn match CSTPMenuSbar        /\<PMenuSbar\>/
+syn match CSTPMenuSel         /\<PMenuSel\>/
+syn match CSTPMenuThumb       /\<PMenuThumb\>/
+syn match CSTSpellBad         /\<SpellBad\>/
+syn match CSTSpellCap         /\<SpellCap\>/
+syn match CSTSpellRare        /\<SpellRare\>/
+syn match CSTLocalVariable    /\<LocalVariable\>/
+syn match CSTMatchParen       /\<MatchParen\>/
+syn match CSTCursorLine       /\<CursorLine\>/
+syn match CSTTabLine          /\<TabLine\>/
+syn match CSTTabLineSel       /\<TabLineSel\>/
 
 " The default highlighting.
 if version >= 508 || !exists("did_CST_syn_inits")
@@ -158,6 +170,18 @@ if version >= 508 || !exists("did_CST_syn_inits")
   CSTHiLink CSTIgnore          Ignore
   CSTHiLink CSTError           Error
   CSTHiLink CSTTodo            Todo
+  CSTHiLink CSTPMenu           PMenu
+  CSTHiLink CSTPMenuSbar       PMenuSbar
+  CSTHiLink CSTPMenuSel        PMenuSel
+  CSTHiLink CSTPMenuThumb      PMenuThumb
+  CSTHiLink CSTSpellBad        SpellBad
+  CSTHiLink CSTSpellCap        SpellCap
+  CSTHiLink CSTSpellRare       SpellRare
+  CSTHiLink CSTLocalVariable   LocalVariable
+  CSTHiLink CSTMatchParen      MatchParen
+  CSTHiLink CSTCursorLine      CursorLine
+  CSTHiLink CSTTabLine         TabLine
+  CSTHiLink CSTTabLineSel      TabLineSel
 endif
 
 delcommand CSTHiLink
