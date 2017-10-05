@@ -47,7 +47,7 @@ NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'vim-scripts/ShowTrailingWhitespace'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'nathanaelkane/vim-indent-guides.git'
 NeoBundle 'tomtom/tcomment_vim'
@@ -86,7 +86,11 @@ let g:neocomplcache_enable_debug=1
 " Don't let gitgutter run eagerly (whatever that means)
 " Apparently it then only runs on buffer load/save.
 let g:gitgutter_eager = 0
-
+" Don't shade with easymotion.. we have a strong enough color scheme we can
+" ignore that.
+let g:EasyMotion_do_shade = 0
+" Don't make the searched things end up as a vim search too
+let g:EasyMotion_add_search_history = 0
 
 " Don't set indent guide colors, we set them below
 let g:indent_guides_auto_colors = 0
@@ -100,9 +104,13 @@ hi link GitGutterChangeDelete DiffText
 hi link IndentGuidesOdd Normal
 hi link IndentGuidesEven ColorColumn
 
-hi link EasyMotionTarget Search
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionTarget2First WarningMsg
+hi link EasyMotionTarget2Second WarningMsg
 hi link EasyMotionShade  Folded
 
+hi link EasyMotionIncSearch ErrorMsg
+hi link EasyMotionMoveHL ErrorMsg
 
 " Select the next longest common string during autocomplete
 set completeopt+=longest
@@ -353,6 +361,8 @@ set nostartofline
 " UNITE
 let g:unite_winheight = 20
 let g:unite_winwidth = 60
+" Always select the first line, even when on insert mode
+let g:unite_enable_auto_select = 0
 "let g:unite_enable_short_source_names = 1
 
 " disable gitgutter keys
@@ -408,6 +418,8 @@ map <leader>j <Plug>(easymotion-j)
 map <leader>k <Plug>(easymotion-k)
 map <leader>h <Plug>(easymotion-linebackward)
 map <leader>l <Plug>(easymotion-lineforward)
+map <leader>u <Plug>(easymotion-s)
+map <leader>/ <Plug>(easymotion-sn)
 
 nmap <leader>\ :vsplit<cr>
 nmap <leader>- :split<cr>
@@ -437,7 +449,6 @@ nnoremap <leader>z :<C-u>Unite grep:.: <cr>
 
 " Switch to last used buffer.
 nmap <leader>e 
-nmap <leader>u :Tagbar<cr>
 " Useful mappings for managing tabs
 nmap <leader>tn :tabnew<cr>
 nmap <leader>to :tabonly<cr>
