@@ -8,7 +8,7 @@ if version > 580
 endif
 
 set t_Co=256
-let g:colors_name = "highlighter_term"
+let g:colors_name = "colorful_modified"
 
 "hi SignColumn -- no settings --
 "hi CTagsMember -- no settings --

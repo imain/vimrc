@@ -13,7 +13,7 @@ if !1 | finish | endif
 
 
 if has('vim_starting')
-  set nocompatible               " Be iMproved
+  set nocompatible
 
 " Required:
 set runtimepath+=~/.vim/neobundle.vim/
@@ -52,6 +52,8 @@ NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'nathanaelkane/vim-indent-guides.git'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'hdima/python-syntax'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 
 call neobundle#end()
 
@@ -61,6 +63,10 @@ filetype plugin indent on
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
+
+let g:airline_theme='minimalist'
+" airline does this for us.
+set noshowmode
 
 " Custom prompt for vimshell
 let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
@@ -93,6 +99,9 @@ hi link GitGutterChangeDelete DiffText
 
 hi link IndentGuidesOdd Normal
 hi link IndentGuidesEven ColorColumn
+
+hi link EasyMotionTarget Search
+hi link EasyMotionShade  Folded
 
 
 " Select the next longest common string during autocomplete
@@ -229,7 +238,7 @@ if has("gui_running")
     colorscheme shobogenzo
 else
     set t_Co=256
-    colorscheme highlighter_term
+    colorscheme highlighter_term_bright
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -405,6 +414,10 @@ nmap <leader>- :split<cr>
 
 nmap <leader>gj :GitGutterNextHunk<cr>
 nmap <leader>gk :GitGutterPrevHunk<cr>
+nmap <leader>gn :GitGutterNextHunk<cr>
+nmap <leader>gp :GitGutterPrevHunk<cr>
+nmap <leader>gt 1G
+nmap <leader>gb G
 
 nmap <leader>x :FixWhitespace<cr>
 nnoremap <leader>f :VimFilerBufferDir<cr>
@@ -412,11 +425,10 @@ nnoremap <leader>f :VimFilerBufferDir<cr>
 map <leader>C :TComment<cr>
 map <leader>B :TCommentBlock<cr>
 
-"nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=files -start-insert file_rec/async:!<cr>
+"nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=files file_rec/async:!<cr>
 nnoremap <leader>r :<C-u>Unite -buffer-name=mru file_mru<cr>
 nnoremap <leader>y :<C-u>Unite -buffer-name=yank history/yank<cr>
-nnoremap <leader>o :<C-u>Unite -buffer-name=outline outline -start-insert<cr>
-nnoremap <leader>n :<C-u>Unite -buffer-name=tags tag -start-insert<cr>
+nnoremap <leader>o :<C-u>Unite -buffer-name=outline outline<cr>
 nnoremap <leader>b :<C-u>Unite -hide-source-names -update-time=1 buffer<cr>
 
 "nnoremap <silent> <leader>b :<C-u>BufferGatorToggle<cr>
