@@ -26,7 +26,7 @@ let g:colors_name = "highlighter_term_bright"
 "hi CTagsClass -- no settings --
 "hi Underlined -- no settings --
 
-hi Normal ctermfg=black ctermbg=229 cterm=bold
+hi Normal ctermfg=black ctermbg=229
 hi NonText ctermfg=black ctermbg=229
 
 " Used for indent guides background color
@@ -70,27 +70,27 @@ hi VisualNOS ctermfg=white ctermbg=91
 hi WarningMsg ctermfg=white ctermbg=208 cterm=bold
 hi WildMenu ctermfg=white ctermbg=53
 
-hi Comment ctermfg=black ctermbg=230
-hi Repeat ctermfg=black ctermbg=227
-hi Function ctermfg=black ctermbg=222
-hi Identifier ctermfg=black ctermbg=223
-hi Exception ctermfg=black ctermbg=224
-hi Keyword ctermfg=black ctermbg=231
-hi Statement ctermfg=black ctermbg=225
-hi String ctermfg=black ctermbg=218
-hi Number ctermfg=black ctermbg=217
-hi Float ctermfg=black ctermbg=216
-hi Character ctermfg=88 ctermbg=222
-hi Boolean ctermfg=black ctermbg=210
-hi Include ctermfg=black ctermbg=211
-hi Conditional ctermfg=black ctermbg=212
-hi Constant ctermfg=black ctermbg=219
-hi Operator ctermfg=black ctermbg=214
-hi Special ctermfg=black ctermbg=220
-hi Debug ctermfg=black ctermbg=226
-hi Define ctermfg=black ctermbg=222
-hi Delimiter ctermfg=black ctermbg=223
-hi Directory ctermfg=18 ctermbg=224
+hi Comment ctermfg=black ctermbg=white
+hi Repeat ctermfg=black ctermbg=85
+hi Function ctermfg=black ctermbg=86
+hi Identifier ctermfg=black ctermbg=87
+hi Exception ctermfg=black ctermbg=121
+hi Keyword ctermfg=black ctermbg=122
+hi Statement ctermfg=black ctermbg=123
+hi String ctermfg=black ctermbg=156
+hi Number ctermfg=black ctermbg=157
+hi Float ctermfg=black ctermbg=158
+hi Character ctermfg=88 ctermbg=159
+hi Boolean ctermfg=black ctermbg=191
+hi Include ctermfg=black ctermbg=192
+hi Conditional ctermfg=black ctermbg=193
+hi Constant ctermfg=black ctermbg=194
+hi Operator ctermfg=black ctermbg=195
+hi Special ctermfg=black ctermbg=187
+hi Debug ctermfg=black ctermbg=188
+hi Define ctermfg=black ctermbg=189
+hi Delimiter ctermfg=black ctermbg=222
+hi Directory ctermfg=18 ctermbg=223
 hi Error ctermfg=52 ctermbg=209 cterm=bold
 hi ErrorMsg ctermfg=52 ctermbg=209 cterm=bold
 hi Label ctermfg=black ctermbg=157
