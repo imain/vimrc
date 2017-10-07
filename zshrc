@@ -6,12 +6,13 @@ setopt appendhistory autocd
 zstyle :compinstall filename '/home/imain/.zshrc'
 autoload -Uz compinit
 compinit
+bindkey '^R' history-incremental-search-backward
 
 # All this for a prompt eh?
 autoload -U colors && colors
 
 # Colors based on hostname
-hostcolor="%{$bg[green]%}%{$fg[black]%}"
+hostcolor="%{$bg[red]%}%{$fg[black]%}"
 dircolor="%{$bg[white]%}%{$fg[black]%}"
 vcscolor="%{$bg[cyan]%}%{$fg[black]%}"
 
@@ -42,7 +43,8 @@ export KEYTIMEOUT=1
 [ -z "$SSH_AUTH_SOCK" ] && SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
 
 ssh_agent_pid=`echo $SSH_AUTH_SOCK | cut -d . -f2 | head -n 1` 
-if [ -z "$SSH_AGENT_PID" ]; then
+if [ -z "$SSH_AGENT_PID" ] && [ -n "$ssh_agent_pid" ]; then
+  echo "Setting existing ssh agent pid to '$ssh_agent_pid'."
   SSH_AGENT_PID=`expr $ssh_agent_pid + 1`
 fi
 [ -n "$SSH_AUTH_SOCK" ] && export SSH_AUTH_SOCK
