@@ -40,20 +40,25 @@ export KEYTIMEOUT=1
 
 
 # set environment variables if user's agent already exists
-[ -z "$SSH_AUTH_SOCK" ] && SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    echo "Setting ssh auth sock from /tmp/ssh.."
+    SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* 2> /dev/null | grep $(whoami) | awk '{print $9}')
 
-ssh_agent_pid=`echo $SSH_AUTH_SOCK | cut -d . -f2 | head -n 1` 
-if [ -z "$SSH_AGENT_PID" ] && [ -n "$ssh_agent_pid" ]; then
-  echo "Setting existing ssh agent pid to '$ssh_agent_pid'."
-  SSH_AGENT_PID=`expr $ssh_agent_pid + 1`
-fi
-[ -n "$SSH_AUTH_SOCK" ] && export SSH_AUTH_SOCK
-[ -n "$SSH_AGENT_PID" ] && export SSH_AGENT_PID
+    echo "SSH_AUTH_SOCK is $SSH_AUTH_SOCK"
+    ssh_agent_pid=`echo $SSH_AUTH_SOCK | cut -d . -f2 | head -n 1`
+    if [ -z "$SSH_AGENT_PID" ] && [ -n "$ssh_agent_pid" ]; then
+      echo "Setting existing ssh agent pid to '$ssh_agent_pid'."
+      SSH_AGENT_PID=`expr $ssh_agent_pid + 1`
+    fi
+    [ -n "$SSH_AUTH_SOCK" ] && export SSH_AUTH_SOCK
+    [ -n "$SSH_AGENT_PID" ] && export SSH_AGENT_PID
+    echo "SSH_AGENT_PID is $SSH_AGENT_PID"
 
-# start agent if necessary
-if [ -z $SSH_AGENT_PID ]; then
-  echo "Starting ssh-agent"
-  eval `ssh-agent -s` > /dev/null
+    # start agent if necessary
+    if [ -z $SSH_AGENT_PID ]; then
+      echo "Starting ssh-agent"
+      eval `ssh-agent -s` > /dev/null
+    fi
 fi
 
 # setup addition of keys when needed
