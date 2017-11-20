@@ -56,6 +56,7 @@ NeoBundle 'hdima/python-syntax'
 NeoBundle 'vim-scripts/indentpython.vim'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
+NeoBundle 'tpope/vim-fugitive'
 
 call neobundle#end()
 
@@ -248,7 +249,7 @@ if has("gui_running")
     colorscheme shobogenzo
 else
     set t_Co=256
-    colorscheme highlighter_term_bright
+    colorscheme highlighter_term
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
