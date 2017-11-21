@@ -83,7 +83,7 @@ hi ErrorMsg ctermfg=52 ctermbg=229 cterm=bold
 hi Exception ctermfg=black ctermbg=147
 hi Float ctermfg=black ctermbg=50
 hi Function ctermfg=black ctermbg=140
-hi Identifier ctermfg=black ctermbg=110
+hi Identifier ctermfg=black ctermbg=148
 hi Include ctermfg=black ctermbg=79
 hi Keyword ctermfg=black ctermbg=110
 hi Label ctermfg=black ctermbg=146
@@ -100,7 +100,7 @@ hi Special ctermfg=black ctermbg=111
 hi SpecialChar ctermfg=black ctermbg=147
 hi SpecialComment ctermfg=black ctermbg=38
 hi SpecialKey ctermfg=black ctermbg=39
-hi Statement ctermfg=black ctermbg=74
+hi Statement ctermfg=black ctermbg=75
 hi StorageClass ctermfg=black ctermbg=105
 hi String ctermfg=black ctermbg=174
 hi Structure ctermfg=black ctermbg=80
