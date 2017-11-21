@@ -437,7 +437,7 @@ nmap <leader>gs :Gstatus<cr>
 nmap <leader>gl :Glog<cr>
 nmap <leader>gb :Unite -buffer-name=git-branch giti/branch<cr>
 nmap <leader>gg :Ggrep 
-nmap <leader>gp :Gpush
+nmap <leader>gp :Gpush<cr>
 nmap <leader>gr :Git! review<cr>
 nmap <leader>ga :Git! add %<cr>
 nmap <leader>gaa :Git! add -u<cr>
