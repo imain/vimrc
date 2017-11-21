@@ -44,7 +44,8 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neoyank.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/neossh.vim'
-NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'osyo-manga/unite-quickfix'
+NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'vim-scripts/ShowTrailingWhitespace'
 NeoBundle 'scrooloose/syntastic'
@@ -406,6 +407,7 @@ nmap wk <C-W>k
 nmap wh <C-W>h
 nmap wl <C-W>l
 nmap wc <C-W>c
+nmap wd <C-W>c
 nmap wo <C-W>o
 nmap w<Up> :res +5<cr>
 nmap w<Down> :res +5<cr>
@@ -427,12 +429,20 @@ map <leader>/ <Plug>(easymotion-sn)
 nmap <leader>\ :vsplit<cr>
 nmap <leader>- :split<cr>
 
-nmap <leader>gj :GitGutterNextHunk<cr>
+nmap <leader>gc :Gcommit<cr>
+nmap <leader>gca :Gcommit --amend<cr>
+nmap <leader>gd :Gdiff<cr>
+nmap <leader>gw :Gwrite<cr>
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gl :Glog<cr>
+nmap <leader>gb :Unite -buffer-name=git-branch giti/branch<cr>
+nmap <leader>gg :Ggrep 
+nmap <leader>gp :Gpush
+nmap <leader>gr :Git! review<cr>
+nmap <leader>ga :Git! add %<cr>
+nmap <leader>gaa :Git! add -u<cr>
 nmap <leader>gk :GitGutterPrevHunk<cr>
-nmap <leader>gn :GitGutterNextHunk<cr>
-nmap <leader>gp :GitGutterPrevHunk<cr>
-nmap <leader>gt 1G
-nmap <leader>gb G
+nmap <leader>gj :GitGutterNextHunk<cr>
 
 nmap <leader>x :FixWhitespace<cr>
 nnoremap <leader>f :VimFilerBufferDir<cr>
@@ -440,15 +450,13 @@ nnoremap <leader>f :VimFilerBufferDir<cr>
 map <leader>C :TComment<cr>
 map <leader>B :TCommentBlock<cr>
 
-"nnoremap <leader>g :<C-u>Unite -no-split -buffer-name=files file_rec/async:!<cr>
 nnoremap <leader>r :<C-u>Unite -buffer-name=mru file_mru<cr>
 nnoremap <leader>y :<C-u>Unite -buffer-name=yank history/yank<cr>
 nnoremap <leader>o :<C-u>Unite -buffer-name=outline outline<cr>
 nnoremap <leader>b :<C-u>Unite -hide-source-names -update-time=1 buffer<cr>
+nnoremap <leader>q :<C-u>Unite -buffer-name=quickfix-list -no-quit quickfix<cr>
+nnoremap <leader>ql :<C-u>Unite -buffer-name=location-list -no-quit location_list<cr>
 
-"nnoremap <silent> <leader>b :<C-u>BufferGatorToggle<cr>
-
-nnoremap <leader>z :<C-u>Unite grep:.: <cr>
 
 " Switch to last used buffer.
 nmap <leader>e 
