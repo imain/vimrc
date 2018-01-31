@@ -1,11 +1,19 @@
 " NeoVIM configuration file.  Just getting going with it..
+"
+" Install:
+"
+" mkdir -p ~/.config/nvim
+" cp init.vim ~/.config/nvim/
+" mkdir -p ~/.nvim/repos/github.com/Shougo
+" cd ~/.nvim/repos/github.com/Shougo
+" git clone https://github.com/Shougo/dein.vim.git
 
 if &compatible
   set nocompatible               " Be iMproved
 endif
 
 " Required:
-set runtimepath+=/home/imain/.nvim//repos/github.com/Shougo/dein.vim
+set runtimepath+=/home/imain/.nvim/repos/github.com/Shougo/dein.vim
 
 " Required:
 if dein#load_state('/home/imain/.nvim/')
@@ -17,6 +25,7 @@ if dein#load_state('/home/imain/.nvim/')
 
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/deol.nvim')
+  call dein#add('Shougo/deoplete-zsh')
   call dein#add('Shougo/denite.nvim')
   call dein#add('Shougo/neomru.vim')
   call dein#add('neoclide/denite-git')
@@ -28,6 +37,7 @@ if dein#load_state('/home/imain/.nvim/')
   call dein#add('vim-airline/vim-airline-themes')
   call dein#add('flazz/vim-colorschemes')
   call dein#add('kassio/neoterm')
+  call dein#add('fatih/vim-go')
 
   " Required:
   call dein#end()
@@ -48,6 +58,7 @@ set t_Co=256
 colorscheme highlighter_term
 
 let g:deoplete#enable_at_startup = 1
+let g:deol#prompt_pattern = '% \|%$'
 let mapleader = " "
 let g:mapleader = " "
 
@@ -62,7 +73,7 @@ nnoremap <leader>b :<C-u>Denite -mode=normal buffer<cr>
 nnoremap <leader>q :<C-u>Denite -mode=normal -buffer-name=quickfix-list -no-quit quickfix<cr>
 nnoremap <leader>ql :<C-u>Denite -mode=normal -buffer-name=location-list -no-quit location_list<cr>
 
-nmap <leader>v :Deol<cr>
+nmap <leader>v :DeolEdit<cr>
 
 " It's easy to never use 'w' these when you have easymotion.
 nmap w\ :vsplit<cr>
