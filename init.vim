@@ -1,4 +1,5 @@
 " NeoVIM configuration file.  Just getting going with it..
+" ~/.config/nvim/init.vim
 
 if &compatible
   set nocompatible               " Be iMproved
@@ -19,6 +20,7 @@ if dein#load_state('/home/imain/.nvim/')
   call dein#add('Shougo/deol.nvim')
   call dein#add('Shougo/denite.nvim')
   call dein#add('Shougo/neomru.vim')
+  call dein#add('chemzqm/vim-easygit')
   call dein#add('neoclide/denite-git')
   call dein#add('zchee/deoplete-zsh')
   call dein#add('easymotion/vim-easymotion')
@@ -61,6 +63,10 @@ nnoremap <leader>o :<C-u>Denite -mode=normal -buffer-name=outline outline<cr>
 nnoremap <leader>b :<C-u>Denite -mode=normal buffer<cr>
 nnoremap <leader>q :<C-u>Denite -mode=normal -buffer-name=quickfix-list -no-quit quickfix<cr>
 nnoremap <leader>ql :<C-u>Denite -mode=normal -buffer-name=location-list -no-quit location_list<cr>
+
+nmap <leader>gl :<C-u>Denite -mode=normal -buffer-name=git-log gitlog<cr>
+nmap <leader>gs :<C-u>Denite -mode=normal -buffer-name=git-status gitstatus<cr>
+nmap <leader>gc :<C-u>Denite -mode=normal -buffer-name=git-changed gitchanged<cr>
 
 nmap <leader>v :Deol<cr>
 
