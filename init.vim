@@ -79,7 +79,20 @@ nmap <leader>gl :<C-u>Denite -mode=normal -buffer-name=git-log gitlog<cr>
 nmap <leader>gs :<C-u>Denite -mode=normal -buffer-name=git-status gitstatus<cr>
 nmap <leader>gc :<C-u>Denite -mode=normal -buffer-name=git-changed gitchanged<cr>
 
-nmap <leader>v :DeolEdit<cr>
+" Start in insert mode in terminal.
+autocmd BufWinEnter,WinEnter term://* startinsert
+nmap <leader>v :terminal<cr>
+
+" Trying out netrw file explorer settings.
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+nmap <leader>f :Vexplore<cr>
+
+" For terminal so we can escape like normal.
+tnoremap <Esc> <C-\><C-n>
 
 " It's easy to never use 'w' these when you have easymotion.
 nmap w\ :vsplit<cr>
