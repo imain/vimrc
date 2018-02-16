@@ -91,6 +91,9 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 20
 nmap <leader>f :Vexplore<cr>
 
+" Allow buffers to be hidden (out of sight while unsaved)
+:set hidden
+
 " For terminal so we can escape like normal.
 tnoremap <Esc> <C-\><C-n>
 

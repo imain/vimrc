@@ -1,4 +1,3 @@
-
 " To install copy this to your ~/.vimrc and run:
 "
 " mkdir ~/.vim
