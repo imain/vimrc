@@ -40,6 +40,7 @@ if dein#load_state('/home/imain/.nvim/')
   call dein#add('flazz/vim-colorschemes')
   call dein#add('kassio/neoterm')
   call dein#add('fatih/vim-go')
+  call dein#add('nathanaelkane/vim-indent-guides.git')
 
   " Required:
   call dein#end()
@@ -55,7 +56,7 @@ syntax enable
 if dein#check_install()
   call dein#install()
 endif
-    
+
 set t_Co=256
 colorscheme highlighter_term
 
@@ -68,6 +69,20 @@ let g:airline_theme='minimalist'
 " airline does this for us.
 set noshowmode
 
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 1
+
+hi link IndentGuidesOdd Normal
+hi link IndentGuidesEven ColorColumn
+
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionTarget2First WarningMsg
+hi link EasyMotionTarget2Second WarningMsg
+hi link EasyMotionShade  Folded
+
+hi link EasyMotionIncSearch ErrorMsg
+hi link EasyMotionMoveHL ErrorMsg
+
 nnoremap <leader>r :<C-u>Denite -mode=normal -buffer-name=mru file_mru<cr>
 nnoremap <leader>y :<C-u>Denite -mode=normal -buffer-name=yank neoyank<cr>
 nnoremap <leader>o :<C-u>Denite -mode=normal -buffer-name=outline outline<cr>
@@ -79,8 +94,6 @@ nmap <leader>gl :<C-u>Denite -mode=normal -buffer-name=git-log gitlog<cr>
 nmap <leader>gs :<C-u>Denite -mode=normal -buffer-name=git-status gitstatus<cr>
 nmap <leader>gc :<C-u>Denite -mode=normal -buffer-name=git-changed gitchanged<cr>
 
-" Start in insert mode in terminal.
-autocmd BufWinEnter,WinEnter term://* startinsert
 nmap <leader>v :terminal<cr>
 
 " Trying out netrw file explorer settings.
