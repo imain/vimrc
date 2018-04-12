@@ -68,6 +68,7 @@ let g:mapleader = " "
 let g:airline_theme='minimalist'
 " airline does this for us.
 set noshowmode
+set expandtab
 
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
