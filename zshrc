@@ -38,14 +38,14 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
-if [ -x "$(command -v nvim)" ]; then
-  alias vim=nvim
-fi
-
 if ! [ -x "$(command -v vim)" ]; then
   alias vim=vi
 fi
 
+if [ -x "$(command -v nvim)" ]; then
+  alias vim=nvim
+  alias vi=nvim
+fi
 
 # set environment variables if user's agent already exists
 if [ -z "$SSH_AUTH_SOCK" ]; then
