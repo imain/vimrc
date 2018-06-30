@@ -28,6 +28,10 @@ precmd () {
 }
 setopt prompt_subst
 
+if [ -f /usr/share/autojump/autojump.zsh ]; then # autojump-zsh on fedora
+    . /usr/share/autojump/autojump.zsh
+fi
+
 # vi mode insert/normal indicator
 function zle-line-init zle-keymap-select {
     PS1="$hostcolor %? $dircolor %~ $vcscolor $vcs_info_msg_0_ $%{$reset_color%} "
