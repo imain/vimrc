@@ -59,8 +59,8 @@ endif
 
 set t_Co=256
 colorscheme highlighter_term
-
-let g:deoplete#enable_at_startup = 1
+let g:go_version_warning = 0
+let g:deoplete#enable_at_startup = 0
 let g:deol#prompt_pattern = '% \|%$'
 let mapleader = " "
 let g:mapleader = " "
