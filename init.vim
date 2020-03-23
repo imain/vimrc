@@ -41,6 +41,10 @@ if dein#load_state('/home/imain/.nvim/')
   call dein#add('kassio/neoterm')
   call dein#add('fatih/vim-go')
   call dein#add('nathanaelkane/vim-indent-guides.git')
+  call dein#add('zenbro/mirror.vim')
+  call dein#add('hdima/python-syntax')
+  call dein#add('vim-scripts/indentpython.vim')
+  call dein#add('scrooloose/syntastic')
 
   " Required:
   call dein#end()
@@ -60,10 +64,23 @@ endif
 set t_Co=256
 colorscheme highlighter_term
 
+" Python syntax stuff
+let python_highlight_all = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 let g:deoplete#enable_at_startup = 1
 let g:deol#prompt_pattern = '% \|%$'
 let mapleader = " "
 let g:mapleader = " "
+
+set completeopt+=longest
+
+" Tab completes..
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 
 let g:airline_theme='minimalist'
 " airline does this for us.
@@ -84,18 +101,20 @@ hi link EasyMotionShade  Folded
 hi link EasyMotionIncSearch ErrorMsg
 hi link EasyMotionMoveHL ErrorMsg
 
-nnoremap <leader>r :<C-u>Denite -mode=normal -buffer-name=mru file_mru<cr>
-nnoremap <leader>y :<C-u>Denite -mode=normal -buffer-name=yank neoyank<cr>
-nnoremap <leader>o :<C-u>Denite -mode=normal -buffer-name=outline outline<cr>
-nnoremap <leader>b :<C-u>Denite -mode=normal buffer<cr>
-nnoremap <leader>q :<C-u>Denite -mode=normal -buffer-name=quickfix-list -no-quit quickfix<cr>
-nnoremap <leader>ql :<C-u>Denite -mode=normal -buffer-name=location-list -no-quit location_list<cr>
+nnoremap <leader>b :<C-u>Denite -highlight-window-background=StatusLine -split=floating -buffer-name=buffers -resume buffer<cr>
+nnoremap <leader>c :<C-u>Denite -highlight-window-background=StatusLine -split=floating -buffer-name=changes -resume change<cr>
+nnoremap <leader>p :<C-u>Denite -highlight-window-background=StatusLine -split=floating -buffer-name=history -resume command_history<cr>
+nnoremap <leader>r :<C-u>Denite -highlight-window-background=StatusLine -split=floating -buffer-name=mru -resume file_mru<cr>
+nnoremap <leader>y :<C-u>Denite -highlight-window-background=StatusLine -split=floating -buffer-name=yank -resume neoyank<cr>
+nnoremap <leader>o :<C-u>Denite -highlight-window-background=StatusLine -split=floating -buffer-name=outline -resume outline<cr>
 
-nmap <leader>gl :<C-u>Denite -mode=normal -buffer-name=git-log gitlog<cr>
-nmap <leader>gs :<C-u>Denite -mode=normal -buffer-name=git-status gitstatus<cr>
-nmap <leader>gc :<C-u>Denite -mode=normal -buffer-name=git-changed gitchanged<cr>
+nmap <leader>gl :<C-u>Denite -buffer-name=git-log gitlog<cr>
+nmap <leader>gs :<C-u>Denite -buffer-name=git-status gitstatus<cr>
+nmap <leader>gc :<C-u>Denite -buffer-name=git-changed gitchanged<cr>
 
 nmap <leader>v :terminal<cr>
+
+nmap <leader>mp :MirrorPush<cr>
 
 " Trying out netrw file explorer settings.
 let g:netrw_banner = 0
@@ -104,6 +123,24 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 nmap <leader>f :Vexplore<cr>
+
+" Define mappings for denite.
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
+
 
 " Allow buffers to be hidden (out of sight while unsaved)
 :set hidden
