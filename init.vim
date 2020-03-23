@@ -72,6 +72,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:deoplete#enable_at_startup = 1
+let g:go_version_warning = 0
 let g:deol#prompt_pattern = '% \|%$'
 let mapleader = " "
 let g:mapleader = " "
