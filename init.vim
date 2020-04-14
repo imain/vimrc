@@ -63,6 +63,8 @@ endif
 
 set t_Co=256
 colorscheme highlighter_term
+" Look for ctags up all dirs.
+set tags=./tags;/
 
 " Python syntax stuff
 let python_highlight_all = 1
