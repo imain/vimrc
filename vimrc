@@ -56,7 +56,6 @@ NeoBundle 'hdima/python-syntax'
 NeoBundle 'vim-scripts/indentpython.vim'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'tpope/vim-fugitive'
 
 call neobundle#end()
 
